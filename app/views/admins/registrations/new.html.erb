@@ -1,7 +1,7 @@
 
 <h2>Sign up</h2>
 
-<%= form_with model: @admin, url: user_registration_path, local: true do |f| %>
+<%= form_with model: @admin, url: admin_registration_path, local: true do |f| %>
   <%= render "admins/shared/error_messages", resource: resource %>
 
   <div class="field">

@@ -1,18 +1,10 @@
 Rails.application.routes.draw do
-  
-  namespace :admins do
-    get 'items/index'
-    get 'items/edit'
-    get 'items/new'
-    get 'items/show'
-  end
   devise_for :customers, controllers: {
-  sessions:      'users/sessions',
-  passwords:     'users/passwords',
-  registrations: 'users/registrations'
+   sessions:      'customers/sessions',
+   passwords:     'customers/passwords',
+   registrations: 'customers/registrations'
   }
-
-  # root to: 'homes#top'
+  
   
 
   

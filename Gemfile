@@ -66,3 +66,9 @@ gem "enum_help"
 gem "devise"
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+gem 'ransack'
+gem 'kaminari'
+gem 'bootstrap', '~> 4.3.1'
+gem 'jquery-rails'
+gem 'i18n_generators'
+gem "enum_help"
