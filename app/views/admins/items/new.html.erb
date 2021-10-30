@@ -5,15 +5,16 @@
 
     <div class="col-md-5 col-xs-5">
      <h2>商品新規登録</h2>
-
+<!--ここから-->
       <div class="item-new-form">
         <%= f.attachment_field :image %>
       </div>
       <div class="product-img" style="margin-top: 20px;">
         <%= image_tag 'no_image.jpg', id:"file-preview", :size => '350×350' %>
+        <input type="file" name="example" accept="image/jpeg, image/png">
       </div>
     </div>
-
+<!--ここまであとで編集-->
     <br><br><br>
       <div class="col-md-5 col-md-offset-2 col-xs-5 col-xs-offset-2">
         <table class="new-form-table">
@@ -26,7 +27,7 @@
 
             <tr>
               <th>商品説明</th>
-              <td><%= f.text_area :description, class: "form-control" %></td>
+              <td><%= f.text_area :introduction, class: "form-control" %></td>
             </tr>
 
             <tr>
@@ -41,21 +42,17 @@
 
             <tr>
               <th>販売ステータス</th>
-              <!--あとで編集-->
-              <%= form_tag(controller: "helo", action: "index") do %>
-              <%= radio_button_tag("r1", "radio 1") %>
-              <%= label_tag("r1_radio_1", "Radio Button 1") %><br>
-              <%= radio_button_tag("r1", "radio 2") %>
-              <%= label_tag("r1_radio_2", "Radio Button 2") %><br>
-              <%= submit_tag("Click") %>
-              <!--ここまで-->
+              <%= f.radio_button :is_active, :true %>
+              <%= f.label :is_active, "販売中"  %>
+              <%= f.radio_button :is_active, :false %>
+              <%= f.label :is_active, "販売停止中" %>
           <% end%>
             </tr>
           </tbody>
         </table>
 
-        <div class="text-right">
-        <%= f.submit "新規登録" ,class: "btn btn-primary text-right" %>
+        <div class="new-item-form">
+        <%= f.submit "新規登録" ,class: "btn btn-primary" %>
         </div>
         </div>
         <% end %>

@@ -1,14 +1,17 @@
 class Customers::ItemsController < ApplicationController
   
-  def show
-    @item = Item.find(params[:id])
-    @items = Item.where(genre_id: @genre.id).page(params[:page]).per(8)
-    @genres = Genre.all
-  end
+def index
+  @genres = Genre.all
+  @search = Item.ransack(params[:q])
+  @items = @search.result.page(params[:page]).per(8)
+  @items_all = Item.all
+end
 
-  def index
-    @search = Item.ransack(params[:q])
-    @items = @search.result.page(params[:page]).per(10)
-  end
+ 
+def show
+  @item = Item.find(params[:id])
+  @cart_item = CartItem.new
+  @genres = Genre.all
+end
 
 end

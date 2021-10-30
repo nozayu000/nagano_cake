@@ -24,9 +24,9 @@
             <tr>
               <td><%= link_to "l.order.created_at", admins_order_details(@order) %></td>
               <td><%= order.user.last_name %><%= order.user.first_name %></td>
-          		<td><%= order.ordered_items.sum(:quantity) %></td>
-        <!--ここにあとで注文ステータスの構文埋める-->
-          	 </tr>
+          		<td><%= order.ordered_items.sum(:amount) %></td>
+              <td><%= order.order_status %></td>
+          	</tr>
           <% end %>
           <%= paginate @orders %>
         </tbody>

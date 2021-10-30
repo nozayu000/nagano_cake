@@ -1,6 +1,8 @@
 class Customers::HomesController < ApplicationController
   def top
-  end 
+  @genres = Genre.all
+  @items = Item.all
+  end
   def about
   end 
   

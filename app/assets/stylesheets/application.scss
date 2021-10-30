@@ -20,8 +20,27 @@
     width: 100%;
     table-layout: fixed;
   }
-
-
+hr {
+   border-width: 1px 0px 0px 0px; /* 太さ */
+   border-style: solid; /* 線種 */
+   border-color: black;   /* 線色 */
+}
+.item_show_status{
+  font-size: 20px; 
+  color:green;
+}
+.status_false{
+  color:gray;
+}
+.status_true{
+  color:green;
+}
+.deleted_false{
+  color:green;
+}
+.deleted_true{
+  color:gray;
+}
   .c {
     height: 500px;
     width :100%;

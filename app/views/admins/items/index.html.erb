@@ -13,12 +13,10 @@
   <div class="text-right">
       <%= link_to "＋" ,new_admins_item_path, class:"btn btn-primary rounded-circle p-0" %>
   </div>
-
-      <!-- ofsetは左右の余白 -->
       <table class="table">
         <thead>
           <tr>
-            <th>商品一覧</th>
+            <th>商品ID</th>
             <th>商品名</th>
             <th>税抜価格</th>
             <th>ジャンル</th>
@@ -33,10 +31,10 @@
               <td><%= link_to item.name ,admins_item_path(item) %></td>
               <td><%= item.price_without_tax.to_s(:delimited, delimiter: ',') %></td>
               <td><%= item.genre.name %></td>
-              <td><% if item.is_sales_status == false %>
-              販売中
+              <td><% if item.is_active == true %>
+              <div class="status_true">販売中</div>
               <% else %>
-              販売停止中
+              <div class="status_false">販売停止中</div>
               <% end %>
               </td>
             </tr>

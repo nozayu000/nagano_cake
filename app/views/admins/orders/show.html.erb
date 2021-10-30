@@ -14,33 +14,29 @@
             <% end %>
             </td>
           </tr>
-                <tr>
-              <td>注文日</td>
-              <td><%= admins_order_details(@order)  %></td>
-            </tr>
-            <tr>
-              <td>配送先</td>
-              <td><%= @customer.postal_code %><%= @customer.address %></td>
-            </tr>
-            <tr>
-              <td>支払方法</td>
-              <td><%= @customer.payment_method %></td>
-            </tr>
-            <tr>
-              <td>注文ステータス</td>
-              <td><%= @customer.order_status %></td>
-            </tr>
-            <tr>
-              <%= form_with model: @customer do |f| %>
-
-               # 以下の一行がプルダウンを実装するためのコード（追記部分）
-               <%= f.collection_select :order_status, order.all, :実際にDBに保存させるカラム名, :選択肢に用いるカラム名, include_blank: "選択して下さい" %>
-          
-               <%= f.submit '送信'%>
+          <tr>
+            <td>注文日</td>
+            <td><%= admins_order_details(@order)  %></td>
+          </tr>
+          <tr>
+            <td>配送先</td>
+            <td><%= @customer.postal_code %><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <td>支払方法</td>
+            <td><%= @customer.payment_method %></td>
+          </tr>
+          <tr>
+            <td>注文ステータス</td>
+            <td>
+              <%= form_for (@order), url:admins_order_path(@order) do |f| %>
+              <%= f.select :order_status,Order.order_statuses.keys.to_a %>
+              <%= f.submit "更新", class: "btn btn-success" %>
               <% end %>
-            </tr>
-    </tbody>
-  </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
 
       <table class="table">
         <thead>
@@ -59,8 +55,8 @@
           <tr>
             <td><%= order_detail.item.name %></td>
             <td><%= (order_detail.price).floor.to_s(:delimited, delimiter: ',') %></td>
-            <td><%= order_detail.quantity %></td>
-            <td><%= (order_detail.price * order_detail.quantity).floor.to_s(:delimited, delimiter: ',') %></td>
+            <td><%= order_detail.amount %></td>
+            <td><%= (order_detail.price * order_detail.amount.floor.to_s(:delimited, delimiter: ',') %></td>
             <td>
               <%= form_for (order_detail), url:admins_order_detail_path(order_detail) do |f|  %>
               <%= f.select :making_status, OrderDetail.making_statuses.keys.to_a %>
@@ -81,12 +77,12 @@
 
           <tr>
             <td>商品合計</td>
-            <td><%= (@order.total_payment - @order.postage).to_s(:delimited, delimiter: ',') %></td>
+            <td><%= (@order.total_payment - @order.shopping_cost).to_s(:delimited, delimiter: ',') %></td>
           </tr>
 
           <tr>
             <td>送料</td>
-            <td><%= @order.postage.to_s(:delimited, delimiter: ',') %></td>
+            <td><%= @order.shopping_cost.to_s(:delimited, delimiter: ',') %></td>
           </tr>
 
           <tr>
