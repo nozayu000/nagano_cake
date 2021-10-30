@@ -71,4 +71,16 @@ gem 'kaminari'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'i18n_generators'
-gem "enum_help"
+gem 'font-awesome-rails'
+
+
+
+# gem 'devise-i18n'
+# gem 'devise-i18n-views'
+# gem 'bootstrap-sass'
+# gem 'rubocop-airbnb'
+# gem 'payjp'
+# gem 'pry-rails'
+# gem 'dotenv-rails'
+# group :production do
+# gem 'mysql2'

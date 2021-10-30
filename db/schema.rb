@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2021_10_20_130809) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    # t.boolean "is_genres_status", default: false, null: false
   end
 
   create_table "items", force: :cascade do |t|
@@ -72,7 +73,7 @@ ActiveRecord::Schema.define(version: 2021_10_20_130809) do
     t.string "name"
     t.string "image_id"
     t.text "introduction"
-    t.integer "price"
+    t.integer "price_without_tax"
     t.boolean "is_active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -96,7 +97,7 @@ ActiveRecord::Schema.define(version: 2021_10_20_130809) do
     t.integer "shopping_cost"
     t.integer "total_payment"
     t.integer "payment_method", default: 0, null: false
-    t.integer "status", default: 0, null: false
+    t.integer "order_status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

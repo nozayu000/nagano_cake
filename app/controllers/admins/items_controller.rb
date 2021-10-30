@@ -20,7 +20,8 @@ class Admins::ItemsController < ApplicationController
       redirect_to admins_item_path(@item)
     else
       flash[:genre_created_error] = "ジャンル名を入力してください"
-    redirect_to new_admins_item_path
+      redirect_to new_admins_item_path
+      # render 'index'
     end
   end
 
@@ -35,11 +36,12 @@ class Admins::ItemsController < ApplicationController
       flash[:notice_update] = "ジャンル情報を更新しました！"
     else
       redirect_to edit_admins_item_path(@item)
+      # render 'edit'
     end
   end
 
   private
   def item_params
-    params.require(:item).permit(:genre_id, :name, :description, :price_without_tax, :image, :is_sales_status)
+    params.require(:item).permit(:genre_id, :name, :introduction, :price_without_tax, :image_id, :is_active)
   end
 end

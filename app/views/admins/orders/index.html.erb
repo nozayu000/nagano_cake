@@ -1,0 +1,35 @@
+<div class="pull-right">
+	<%= search_form_for(@search, url:admins_orders_path) do |f| %>
+		<%= f.label :last_name_or_first_name, "キーワード" %>
+		<%= f.search_field :last_name_or_first_name_cont %>
+		<%= f.submit %>
+	<% end %>
+</div>
+
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+      <h2>注文履歴一覧</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>購入日時</th>
+            <th>購入者</th>
+            <th>注文個数</th>
+            <th>注文ステータス</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @orders.each do |order| %>
+            <tr>
+              <td><%= link_to "l.order.created_at", admins_order_details(@order) %></td>
+              <td><%= order.user.last_name %><%= order.user.first_name %></td>
+          		<td><%= order.ordered_items.sum(:quantity) %></td>
+        <!--ここにあとで注文ステータスの構文埋める-->
+          	 </tr>
+          <% end %>
+          <%= paginate @orders %>
+        </tbody>
+      </table>
+    </div>
+  </div>

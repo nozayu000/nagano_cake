@@ -1,4 +1,5 @@
 class Admins::CustomersController < ApplicationController
+  before_action :authenticate_admin!
   
   def index
     @search = Customer.ransack(params[:q])
@@ -8,7 +9,6 @@ class Admins::CustomersController < ApplicationController
   
   def show
     @customer = Customer.find(params[:id])
-    
   end 
   
   def edit
@@ -27,6 +27,6 @@ class Admins::CustomersController < ApplicationController
 
   private
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :phone_number, :email, :is_customer_status)
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :email, :is_deleted)
   end
 end

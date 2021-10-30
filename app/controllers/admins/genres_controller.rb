@@ -12,7 +12,7 @@ class Admins::GenresController < ApplicationController
       redirect_to admins_genres_path
     else
       flash[:genre_created_error] = "ジャンル名を入力してください"
-    redirect_to
+      render 'index'
     end
   end
 
@@ -30,9 +30,17 @@ class Admins::GenresController < ApplicationController
     end
   end
 
+  # def show
+  #     @genre = Genre.find(params[:id])
+  #     @items = Item.where(genre_id: @genre.id).page(params[:page]).per(8)
+  #     @genres = Genre.all
+  # end
+
+
+
   private
   def genre_params
-    params.require(:genre).permit(:name, :is_genres_status)
+    params.require(:genre).permit(:name)
   end
 
 end
