@@ -19,7 +19,7 @@ class Admins::ItemsController < ApplicationController
     if @item.save
       redirect_to admins_item_path(@item)
     else
-      flash[:genre_created_error] = "ジャンル名を入力してください"
+      flash[:genre_created_error] = "ジャンル名を選択してください"
       redirect_to new_admins_item_path
       # render 'index'
     end

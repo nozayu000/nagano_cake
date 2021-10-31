@@ -1,19 +1,18 @@
 class Admins::OrdersController < ApplicationController
   before_action :authenticate_admin!
   
-  def index
-    if params[:day]
-      @orders = Order.created_today
-    else
-  	   @orders = Order.all
-    end
-  end
+  # def index
+  #   if params[:day]
+  #     @orders = Order.created_today
+  #   else
+  # 	   @orders = Order.all
+  #   end
+  # end
 
-# naganocake見本
-#   def index
-# 		@search = Order.ransack(params[:q])
-#     @orders = @search.result.page(params[:page]).per(10)
-# 	end
+  def index
+		@search = Order.ransack(params[:q])
+    @orders = @search.result.page(params[:page]).per(10)
+end
 
 
 

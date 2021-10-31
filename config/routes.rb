@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   # customer側ルーティング
   devise_for :customers, controllers: {
    sessions:      'customers/sessions',
@@ -8,8 +7,8 @@ Rails.application.routes.draw do
   }
 
   scope module: 'customers' do
-    root 'homes#top'
     resources :items, only: [:show, :index]
+    root 'homes#top'
     get 'about' => 'homes#about'
    end
 
@@ -35,7 +34,7 @@ Rails.application.routes.draw do
   }
 
   namespace :admins do
-   root :to => 'top#top'
+   root :to => 'orders#index'
    resources :customers, only: [:index, :edit, :update, :show]
    resources :genres, only: [:index, :create, :edit, :update]
    resources :items, only: [:show, :index, :new, :create, :edit, :update]
