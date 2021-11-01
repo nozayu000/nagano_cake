@@ -28,14 +28,14 @@
             </div>
             <div class="col-xs-12">
               <%= f.label :"電話番号(ハイフンなし)", class: "col-sm-3 control-label", style: "margin: 10px;" %>
-              <%= f.text_field :phone_number, class: "col-sm-2 form-control-static", style: "margin: 10px;" %>
+              <%= f.text_field :telephone_number, class: "col-sm-4 form-control-static", style: "margin: 10px;" %>
             </div>
         </div>
 
         <div class="actions col-xs-10 col-xs-offset-2">
         <p>
-          <%= f.submit "編集内容を保存する", class: "btn btn-primary col-sm-3", style: "margin: 10px;" %>
-          <%= link_to " 退会する", customers_quit_path, class: "glyphicon glyphicon-tint btn btn-danger col-sm-3", style: "margin: 10px;" %>
+          <%= f.submit "編集内容を保存", class: "btn btn-primary col-sm-3" %>
+          <%= link_to " 退会する", customers_unsubscribe_path, class: "glyphicon glyphicon-tint btn btn-danger col-sm-3", style: "margin: 10px;" %>
         </p>
         </div>
       <% end %>

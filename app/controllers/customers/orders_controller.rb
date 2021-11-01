@@ -1,11 +1,14 @@
 class Customers::OrdersController < ApplicationController
-#注文情報入力画面 
+#注文情報入力画面
   def new
     @cart_items = current_customer.cart_items
+    @customer = current_customer
   end
 
 #注文情報確認画面
   def comfirm
+  	@cart_items = current_customer.cart_items
+  	
   end
 #注文完了画面
   def compleate
@@ -14,7 +17,7 @@ class Customers::OrdersController < ApplicationController
 
 		if session[:new_address]
 			address = current_customer.addresses.new
-			address.postal_code = order.post_code
+			address.postal_code = order.postal_code
 			address.address = order.address
 			address.name = order.name
 			address.save
@@ -26,14 +29,14 @@ class Customers::OrdersController < ApplicationController
 			order_detail = OrderDetail.new
 			order_detail.order_id = order.id
 			order_detail.item_id = cart_item.item.id
-			order_detail.quantity = cart_item.amount
+			order_detail.amount = cart_item.amount
 			order_detail.making_status = 0
 			order_detail.price = (cart_item.item.price_without_tax * 1.1).floor
 			order_detail.save
 		end
 
 		# 購入後はカート内商品削除
-		cart_items.all_destroy
+		cart_items.destroy_all
   end
 
   def create
@@ -73,7 +76,7 @@ class Customers::OrdersController < ApplicationController
 			address = Address.find(params[:address_for_order])
 			session[:order][:postal_code] = address.postal_code
 			session[:order][:address] = address.address
-			session[:order][:name] = address.name 
+			session[:order][:name] = address.name
 
 		# 新しいお届け先が選択された時
 		elsif destination == 2
@@ -99,7 +102,8 @@ class Customers::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
+  	@order = current_customer.orders
+    # @order = Order.find(params[:id])
 		@order_details = @order.order_details
   end
 end
