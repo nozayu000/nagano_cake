@@ -10,12 +10,12 @@ class Admins::OrdersController < ApplicationController
   # end
 
   def index
-		@search = Order.ransack(params[:q])
-    @orders = @search.result.page(params[:page]).per(10)
+		@order = Order.ransack(params[:q])
+    @orders = @or.result.page(params[:page]).per(10)
   end
   def show
   	@order = Order.find(params[:id])
-    @items = @order.ordered_items
+    @items = @order.order_details
     @order_details = @order.order_details
   end
 

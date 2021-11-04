@@ -7,8 +7,11 @@ class Customers::OrdersController < ApplicationController
 
 #注文情報確認画面
   def comfirm
-  	@cart_items = current_customer.cart_items
-  	
+  	@cart_items = current_customer.cart_items.all
+  	@order = Order.current_customer
+		@order.payment_method = params[:method].to_i
+    # カートに入ってる商品の合計金額
+    @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
   end
 #注文完了画面
   def compleate
@@ -102,9 +105,9 @@ class Customers::OrdersController < ApplicationController
   end
 
   def show
-  	@order = current_customer.orders
-    # @order = Order.find(params[:id])
-		@order_details = @order.order_details
+    @order = current_customer.orders
+    @customer = current_customer
+		@order_details = @order.values
   end
 end
 

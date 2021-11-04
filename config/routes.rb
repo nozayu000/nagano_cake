@@ -14,14 +14,14 @@ Rails.application.routes.draw do
 
   namespace :customers do
    resources :items, only: [:show]
-   patch 'customers/withdraw' => 'customers#withdraw', as: 'customers_withdraw'
    get 'show' => 'customers#show'
    get 'customers/edit' => 'customers#edit'
    patch 'update' => 'customers#update'
    get 'unsubscribe' => 'customers#unsubscribe'
-   get 'orders/complete' => 'orders#complete'
+   patch 'customers/withdraw' => 'customers#withdraw', as: 'customers_withdraw'
+   resources :orders, only: [:new, :create, :index, :show]
    post 'orders/comfirm' => 'orders#comfirm'
-   resources :orders, only: [:create, :new, :index, :show, :comfirm]
+   get 'orders/complete' => 'orders#complete'
    resources :cart_items, only: [:index, :create, :update, :destroy]
    delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_all'
    resources :addresses, only: [:index, :create, :destroy, :edit, :update]

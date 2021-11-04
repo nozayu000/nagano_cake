@@ -2,8 +2,8 @@ class Customers::ItemsController < ApplicationController
   
 def index
   @genres = Genre.all
-  @search = Item.ransack(params[:q])
-  @items = @search.result.page(params[:page]).per(8)
+  @item = Item.ransack(params[:q])
+  @items = @item.result.page(params[:page]).per(8)
   @items_all = Item.all
 end
 

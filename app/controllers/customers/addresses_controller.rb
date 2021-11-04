@@ -11,14 +11,11 @@ class Customers::AddressesController < ApplicationController
     def create
         @address = Address.new(address_params)
         @address.customer_id = current_customer.id
-        if @address.save
+        @address.save
+        
             redirect_to customers_addresses_path
             flash[:success] = "登録しました。"
-        else
-            @address = Address.new
-            @addresses = current_customer.addresses
-            render 'index'
-        end
+
     end
 
     # 配送先を削除する
@@ -26,7 +23,8 @@ class Customers::AddressesController < ApplicationController
         address = Address.find(params[:id])
         address.destroy
         redirect_to customers_addresses_path
-    end 
+        flash[:success] = "削除しました。"
+    end
 
     # 配送先編集ボタン
     def edit

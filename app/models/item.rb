@@ -7,4 +7,8 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :introduction, presence: true
   validates :price_without_tax, presence: true
+  
+  def taxin_price
+        price_without_tax*1.1
+  end
 end
