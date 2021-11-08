@@ -1,34 +1,15 @@
 class Customers::CartItemsController < ApplicationController
   before_action :authenticate_customer!
-
     # カート商品一覧を表示
     def index
-        # @cart_items = current_customer.cart_items
-        # @total_price = @cart_items.sum{|cart_item|cart_item.item.price_without_tax * cart_item.amount * 1.1}
+        @cart_items = current_customer.cart_items
+        @total_price = @cart_items.sum{|cart_item|cart_item.item.price_without_tax * cart_item.amount * 1.1}
         # sumメソッド：合計金額を出す
         # 1行目の@cart_itemsにsumメソッドを用いて{}の||ブロック変数にcart_itemを代入している。(each do || end の文章と同じイメージ)
         # cart_item.item.price_without_tax：アソシエーションしているのでドットでつなげる。
         # 『このcart_itemのitemのprice_without_tax』 → 『このカート商品の商品（単体）の税抜き価格』
         # cart_item.quantity：『このカート商品の個数』
-        
-        @cart_items= current_customer.cart_items.all
-        # カートに入ってる商品の合計金額
-        @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
-        # inject(0):配列の合計を算出する
-        # 配列オブジェクト.inject {|初期値, 要素| ブロック処理 }が基本の形
-        # inject(0)の(0)は、初期値は0という意味
-        # { |sum, item| sum + item.sum_of_price }で行ってることは？
-        # １回目の動作
-        # @cart_itemsから、カートに入ってる１つ目のitem取り出して、
-        # sumにitem.sum_of_priceを足す。（sumの初期値は inject(0)で０）
-        # 2回目以降の動作
-        # 次のitem取り出して、sumにitem.sum_of_priceを足す。
-        # これで、最終的にカート内商品の合計金額が出る
-        
-
-        
     end
-
     # カート商品を追加する
     def create
         # @cart_item = current_customer.cart_items.build(item_id: params[:item_id])

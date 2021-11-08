@@ -12,38 +12,38 @@
             <% if customer_signed_in? %>
             <!--カスタマーがログインしている時 -->
               <li style="font-family: HiraMinPro-W6; margin-top: 15px;">
-                ようこそ、<%= current_customer.last_name + current_customer.first_name %>さん！
+                <div style ="margin-right: 150px;">ようこそ、<%= current_customer.last_name + current_customer.first_name %>さん！</div>
               </li>
               <li class="nav-item"><%= link_to "マイページ", customers_show_path, class: "btn btn-light mb-3",  style: "font-family: HiraMinPro-W6; color: #000000;" %></li>
-              
+
               <li class="nav-item"><%= link_to "商品一覧", items_path, class: "btn btn-light mb-3",  style: "font-family: HiraMinPro-W6; color: #000000;" %></li>
-              
+
               <li class="nav-item"><%= link_to "カート", customers_cart_items_path, class: "btn btn-light mb-3",  style: "font-family: HiraMinPro-W6; color: #000000;" %></li>
-              
+
               <li class="nav-item"><%= link_to "ログアウト", destroy_customer_session_path, class: "btn btn-light mb-3",  method: :delete, style: "font-family: HiraMinPro-W6; color: #000000;" %></li>
-    
+
             <% elsif admin_signed_in? %>
             <!-- 管理者がログインしている時 -->
               <li class="nav-item"><%= link_to "商品一覧", admins_items_path, class: "btn btn-light mb-3", style: "font-family: HiraMinPro-W6; color: #000000;" %></li>
-              
+
               <li class="nav-item"><%= link_to "会員一覧", admins_customers_path, class: "btn btn-light mb-3",  style: "font-family: HiraMinPro-W6; color: #000000;" %></li>
-              
+
               <li class="nav-item"><%= link_to "注文履歴一覧", admins_orders_path, class: "btn btn-light mb-3",  style: "font-family: HiraMinPro-W6; color: #000000;" %></li>
-              
+
               <li class="nav-item"><%= link_to "ジャンル一覧", admins_genres_path, class: "btn btn-light mb-3",  style: "font-family: HiraMinPro-W6; color: #000000;" %></li>
-              
+
               <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, class: "btn btn-light mb-3",  method: :delete %></li>
-    
+
             <% else %>
             <!-- ログインしていない時 -->
               <li class="nav-item"><%= link_to "About", about_path, class: "btn btn-light mb-3", style: "font-family: HiraMinPro-W6; color: #000000;" %></li>
-              
+
               <li class="nav-item"><%= link_to "商品一覧", items_path, class: "btn btn-light mb-3",　style: "font-family: HiraMinPro-W6; color: #000000;" %></li>
-              
+
               <li class="nav-item"><%= link_to "新規登録", new_customer_registration_path, class: "btn btn-light mb-3",　style: "font-family: HiraMinPro-W6; color: #000000;" %></li>
-              
+
               <li class="nav-item"><%= link_to "ログイン", new_customer_session_path, class: "btn btn-light mb-3",　style: "font-family: HiraMinPro-W6; color: #000000;" %></li>
-              
+
             <% end %>
             </br>
           </ul>

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # customer側ルーティング
-  devise_for :customers, controllers: {
+   devise_for :customers, controllers: {
    sessions:      'customers/sessions',
    passwords:     'customers/passwords',
    registrations: 'customers/registrations'
@@ -19,16 +19,18 @@ Rails.application.routes.draw do
    patch 'update' => 'customers#update'
    get 'unsubscribe' => 'customers#unsubscribe'
    patch 'customers/withdraw' => 'customers#withdraw', as: 'customers_withdraw'
-   resources :orders, only: [:new, :create, :index, :show]
-   post 'orders/comfirm' => 'orders#comfirm'
    get 'orders/complete' => 'orders#complete'
+   post 'orders/comfirm' => 'orders#comfirm'
+   resources :orders, only: [:new, :create, :index, :show]
+   
+   
    resources :cart_items, only: [:index, :create, :update, :destroy]
    delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_all'
    resources :addresses, only: [:index, :create, :destroy, :edit, :update]
   end
 
   # admin側ルーティング
-  devise_for :admins, controllers: {
+   devise_for :admins, controllers: {
    sessions:      'admins/sessions',
    passwords:     'admins/passwords',
    registrations: 'admins/registrations'

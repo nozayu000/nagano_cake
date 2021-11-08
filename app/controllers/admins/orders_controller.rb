@@ -1,41 +1,30 @@
 class Admins::OrdersController < ApplicationController
   before_action :authenticate_admin!
-  
-  # def index
-  #   if params[:day]
-  #     @orders = Order.created_today
-  #   else
-  # 	   @orders = Order.all
-  #   end
-  # end
 
   def index
 		@order = Order.ransack(params[:q])
-    @orders = @or.result.page(params[:page]).per(10)
-  end
-  def show
-  	@order = Order.find(params[:id])
-    @items = @order.order_details
-    @order_details = @order.order_details
+    @orders = @order.result.page(params[:page]).per(10)
   end
 
-#   def total(items_total_price)
-    
-# 	end
+  def show
+
+    @order = Order.find(params[:id])
+		@order_details = @order.order_details
+		@customer = @order.customer
+  end
 
 	def update
-		order = Order.find(params[:id])
-		order_details = order.order_details
-    order.update(order_params)
-
-		if order.order_status == "入金確認"
-			order_details.update_all(making_status: "製作待ち")
+		@order = Order.find(params[:id])
+		@order_details = @order.order_details
+    @order.update(order_params)
+		if @order.order_status == "入金確認"
+			 @order_details.update_all(making_status: "製作待ち")
 		end
-		redirect_to admins_order_path(order.id)
+		redirect_to admins_order_path(@order)
 	end
 
   private
 	def order_params
-		params.require(:order).permit(:order_status)
+		params.require(:order).permit(:payment_method, :order_status)
 	end
 end

@@ -8,6 +8,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </head>
@@ -41,17 +42,15 @@
       </body>
       
     <% else %>
-      
       <body id="container" style="background-color: #EEEEEE; font-family: HiraMinPro-W6; color: #000000;">
         <!-- ヘッダー -->
-        <div id="header">
-          <%= render "layouts/header" %>
-        </div>
+        <div id="header"><%= render "layouts/header" %></div>
         <!-- Body部分 -->
-              <%= yield %>
+        <div classtyle="margin-top: 20px;">
+          <%= yield %>
+        </div>
         <!-- Footer -->
-        <%= render "layouts/footer" %>
+        <div id="footer"><%= render "layouts/footer" %></div>
       </body>
     <% end %>
-      
 </html>

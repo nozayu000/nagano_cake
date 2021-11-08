@@ -1,17 +1,10 @@
 class Admins::ItemsController < ApplicationController
   before_action :authenticate_admin!,only: [:create,:edit,:update,:index, :show, :new]
 
-  def show
-    @item = Item.find(params[:id])
-  end
 
   def index
     @item = Item.ransack(params[:q])
     @items = @item.result.page(params[:page]).per(10)
-  end
-
-  def new
-    @items = Item.new
   end
 
   def create
@@ -24,8 +17,17 @@ class Admins::ItemsController < ApplicationController
       # render 'index'
     end
   end
+  
+  
+  def new
+    @items = Item.new
+  end
 
   def edit
+    @item = Item.find(params[:id])
+  end
+
+  def show
     @item = Item.find(params[:id])
   end
 
@@ -42,6 +44,6 @@ class Admins::ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:genre_id, :name, :introduction, :price_without_tax, :image_id, :is_active)
+    params.require(:item).permit(:genre_id, :name, :introduction, :price_without_tax, :image, :is_active)
   end
 end

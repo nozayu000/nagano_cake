@@ -5,28 +5,23 @@ class Customers::CustomersController < ApplicationController
     def show
         @customer = current_customer
     end
-
     # 登録情報編集へのアクション
     def edit
         @customer = current_customer
     end
-
     # 登録情報の編集を保存するアクション
     def update
         @customer = current_customer
         if @customer.update(customer_params)
-           flash[:success] = "登録情報を変更しました。"
+           flash[:success_customer] = "登録情報を変更しました。"
            redirect_to customers_show_path
         else
             render 'edit'
         end
     end
-
     # 登録情報編集画面から退会ページを表示するアクション
     def unsubscribe
-
     end
-
     # 退会アクション
     def withdraw
         @customer = current_customer
