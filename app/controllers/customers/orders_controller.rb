@@ -77,8 +77,8 @@ class Customers::OrdersController < ApplicationController
 	end
 
 	def show
-		@order = Order.find(params[:id])
-		@order_details = @order.order_details
+		@order = Order.ransack(params[:id])
+		@order_details = @order.result.page(params[:page]).per(10)
 	end
 
 
