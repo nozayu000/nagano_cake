@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   namespace :customers do
    resources :items, only: [:show]
+   resources :genres, only: [:show]
    get 'show' => 'customers#show'
    get 'customers/edit' => 'customers#edit'
    patch 'update' => 'customers#update'
@@ -22,8 +23,6 @@ Rails.application.routes.draw do
    get 'orders/complete' => 'orders#complete'
    post 'orders/comfirm' => 'orders#comfirm'
    resources :orders, only: [:new, :create, :index, :show]
-   
-   
    resources :cart_items, only: [:index, :create, :update, :destroy]
    delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_all'
    resources :addresses, only: [:index, :create, :destroy, :edit, :update]

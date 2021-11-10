@@ -1,5 +1,5 @@
 <%= render 'layouts/errors', obj: @customer %>
-<%= flash[:success_customer] %>
+
 <div class="row">
     <div class="col-xs-12">
       <h3><strong>登録情報編集</strong></h3>
@@ -35,8 +35,8 @@
 
         <div class="actions col-xs-10 col-xs-offset-2">
         <p>
-          <%= f.submit "編集内容を保存", class: "btn btn-primary col-sm-3", style: "margin: 10px;" %>
-          <%= link_to " 退会する", customers_unsubscribe_path, class: "glyphicon glyphicon-tint btn btn-danger col-sm-3", style: "margin: 10px;" %>
+          <%= f.submit "編集内容を保存", class: "btn btn-primary col-sm-3" %>
+          <%= link_to " 退会する", customers_unsubscribe_path, class: "glyphicon glyphicon-tint btn btn-danger text-align: left" %>
         </p>
         </div>
       <% end %>

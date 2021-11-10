@@ -1,51 +1,42 @@
-<!doctype html>
-<html lang ="ja">
-    <div class="container">
-        <div class="row">
-            <!-- ジャンルのサイドバーを表示 -->
-            <section>
-                <aside>
-                    <br>
-                    <div class="col-xs-1">
-                        <%= render "customers/items/sidebar", genres: @genres %>
-                    </div>
-                </aside>
-            </section>
-            <section>
-                <article>
-                    <div class="col-xs-9" style="padding-right: 10px; padding-left: 70px;">
-                        <h2 style="font-family: HiraMinPro-W6; color: #000000; margin: 20px 0;">ようこそ、NaganoCakeへ！</h2>
-                        <h5 style="padding-top: 30px; padding-right: 10px; padding-left: 70px;">
-                        このサイトは、ケーキ販売のECサイトになります。</br>
-                        会員でない方も商品の閲覧はできますが、</br>
-                        購入には会員登録が必要になります。</br>
-                        </h5>
-                    </div>
-                </article>
-            </section>
-            <section>
-                <div class="col-xs-3" style="padding-right: 0px; padding-left: 200px;">
-                <h3 class="recommended-items" style="font-family: HiraMinPro-W6; color: #000000;">新着商品</h3>
-                <div class="container">
-                    <div class="row">
-                    <!-- 商品を4つ表示するようにする -->
-                        <% @items.last(4).each do |item| %>
-                            <div class="col-xs-3" style="padding-right: 50px; padding-left: 0px;">
-                                <%= link_to item_path(item.id) ,style: "color: black;", data: {"turbolinks" => false} do %>
-                                    <%= attachment_image_tag item, :image, :fill, 180, 125, format: 'jpeg',fallback: "no_image.jpg" %><br>
-                                    <%= item.name %><br>
-                                    ¥<%= item.price_without_tax.to_s(:delimited, delimiter: ',') %>
-                                <% end %>
-                            </div>
+<div class = "container">
+	<div>
+		<%= render 'customers/items/sidebar', genres: @genres %>
+	</div>
+	<div class="row">
+    <section>
+            <div class="col-xs-9" style="padding-right: 10px; padding-left: 70px;">
+                <h2 style="font-family: HiraMinPro-W6; color: #000000; margin: 28px 0; padding-left: 20px;">
+                    ようこそ、NaganoCakeへ！<hr size="10" width="100%" color="green">
+                </h2>
+                <h5 style="padding-right: 10px; padding-left: 40px;">
+                このサイトは、ケーキ販売のECサイトになります。</br>
+                会員でない方も商品の閲覧はできますが、</br>
+                購入には会員登録が必要になります。</br>
+                </h5>
+            </div>
+    </section>
+    <section>
+        <div class="col-xs-3" style="padding-top: 50px; padding-left: 10px;">
+        <h3 class="recommended-items" style="font-family: HiraMinPro-W6; color: #000000;">
+            新着商品
+        </h3>
+        </div>
+        <div class="container">
+            <div class="row">
+            <!-- 商品を4つ表示するようにする -->
+                <% @items.last(4).each do |item| %>
+                    <div class="col-xs-3" style="margin: 40px;">
+                        <%= link_to item_path(item.id) ,style: "color: black;", data: {"turbolinks" => false} do %>
+                            <%= attachment_image_tag item, :image, :fill, 180, 125, format: 'jpeg',fallback: "no_image.jpg" %><br>
+                            <%= item.name %><br>
+                            ¥<%= item.price_without_tax.to_s(:delimited, delimiter: ',') %>
                         <% end %>
                     </div>
-                </div>
-                <table class="" >
-                    <%= link_to "全ての商品を見る>", items_path, class:"", style: "font-family: HiraMinPro-W6; color: #000000; margin: 30px 0;" %>
-                </table>
-                </div>
-           </section>
+                <% end %>
+            </div>
         </div>
+   </section>
+    <div style="text-align: right">
+        <%= link_to "全ての商品を見る>", items_path, class:"", style: "font-family: HiraMinPro-W6; color: #000000;" %>
     </div>
-
-</html>
+</div>

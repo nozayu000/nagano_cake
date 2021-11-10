@@ -29,6 +29,8 @@ ja:
           telephone_number: 電話番号
           email: メールアドレス
           encrypted_password: パスワード
+          password: パスワード
+          remember_me: ログイン状態を保存する
 
   # 全てのmodelで共通して使用するattributesを定義
   attributes:
