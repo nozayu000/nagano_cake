@@ -74,11 +74,12 @@ class Customers::OrdersController < ApplicationController
 
 	def index
 		@orders = current_customer.orders
+		# @order_details = @order.page(params[:page]).per(10)
 	end
 
 	def show
-		@order = Order.ransack(params[:id])
-		@order_details = @order.result.page(params[:page]).per(10)
+		@order = Order.find(params[:id])
+		@order_details = @order.order_details
 	end
 
 

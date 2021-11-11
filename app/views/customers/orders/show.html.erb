@@ -8,7 +8,8 @@
               <tr>
                 <th class="info", bgcolor="#d7cebb">注文日</th>
           	    <td class="text-left">
-                  <%= l(@order.created_at) %>
+
+                  <%= l @order.created_at %>
                 </td>
               </tr>
               <tr>
@@ -79,7 +80,7 @@
             </tr>
           <% end %>
           </tbody>
-          <%= paginate @orders %>
+         
         </table>
     </div>
 </div>
